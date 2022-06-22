@@ -258,6 +258,7 @@
     justify-content: space-between;
     flex-direction: column;
     margin-bottom: 1rem;
+    margin-inline: -1rem;
   }
 
   .topnav img {
