@@ -49,6 +49,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 }
 
 .footer a {
@@ -341,7 +342,8 @@
 .contactform input[type="button"],
 .contactform input[type="submit"],
 .contactform input[type="reset"],
-.contactbutton {
+.contactbutton,
+.contactbuttonmobile {
   background: linear-gradient(to bottom right, #3399ff, #0070f3);
   border: none;
   color: white;
@@ -349,4 +351,25 @@
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 5px;
+}
+
+.contactbutton {
+  display: block;
+  font-size: 20px;
+}
+
+.contactbuttonmobile {
+  display: none;
+  margin-top: -15%;
+}
+
+@media screen and (max-width: 700px) {
+  .contactbutton {
+    display: none;
+  }
+
+  .contactbuttonmobile {
+    display: block;
+  }
 }

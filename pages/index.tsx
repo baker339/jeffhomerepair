@@ -12,8 +12,18 @@ const Home: NextPage = () => {
       <NavBar currentTab="Home" />
       <main className={styles.main}>
         {/* <Link href="/contact">
-          <a className={styles.description}>Contact Us</a>
+          <a className={styles.card}>Contact Us</a>
         </Link> */}
+        <span className={styles.maininside} itemProp="telephone">
+          <div className={styles.contactbuttonmobile}>
+            <a href="tel:207-649-8010">Give Us a Call</a>
+          </div>
+          <div className={styles.contactbutton}>
+            <Link href="/contact">
+              <a>Contact Us</a>
+            </Link>
+          </div>
+        </span>
         <div className={styles.grid}>
           <Link href="/services">
             <a className={styles.card}>
