@@ -333,7 +333,8 @@
 
 .contactform input[type="button"],
 .contactform input[type="submit"],
-.contactform input[type="reset"] {
+.contactform input[type="reset"],
+.contactbutton {
   background: linear-gradient(to bottom right, #3399ff, #0070f3);
   border: none;
   color: white;
