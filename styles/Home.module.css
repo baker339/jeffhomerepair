@@ -3,13 +3,42 @@
 }
 
 .main {
-  min-height: 100vh;
+  /* min-height: 100vh; */
+  --background: white;
+  --border-color: linear-gradient(to bottom right, #3399ff, #0070f3);
+  --border-width: 0.5em;
+  --edge-size: 3em;
+  --edge-mult: 0.25;
+  position: relative;
   padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.main::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../public/tool-ga50bbd50b_1920.jpg");
+  filter: grayscale(100%);
+  clip-path: polygon(
+    0% var(--edge-size),
+    var(--edge-size) 0%,
+    100% 0,
+    100% calc(100% - var(--edge-size)),
+    calc(100% - var(--edge-size)) 100%,
+    0 100%
+  );
+}
+
+.maininside {
+  position: relative;
 }
 
 .footer {
@@ -19,6 +48,7 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .footer a {
@@ -51,7 +81,7 @@
 }
 
 .description {
-  margin: 4rem 0;
+  margin: 2rem 0;
   line-height: 1.5;
   font-size: 1.5rem;
 }
@@ -73,24 +103,119 @@
   max-width: 800px;
 }
 
-.card {
+.card,
+.cardnohover {
+  --background: white;
+  --border-color: linear-gradient(to bottom right, #3399ff, #0070f3);
+  --border-width: 0.5em;
+  --edge-size: 1em;
+  --edge-mult: 0.25;
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  padding: 0.5em 1.5em;
+  border: 0;
+  background: var(--background);
+  clip-path: polygon(
+    0% var(--edge-size),
+    var(--edge-size) 0%,
+    100% 0,
+    100% calc(100% - var(--edge-size)),
+    calc(100% - var(--edge-size)) 100%,
+    0 100%
+  );
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
-  color: inherit;
+  /* color: inherit;
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease; */
   max-width: 300px;
+  min-width: 18rem;
+  min-height: 12rem;
 }
 
-.card:hover,
+.card::before,
+.card::after,
+.cardnohover::before,
+.cardnohover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card::before,
+.cardnohover::before {
+  background: var(--border-color);
+  z-index: -2;
+}
+
+.card::after,
+.cardnohover::after {
+  background: var(--background);
+  z-index: -1;
+
+  clip-path: polygon(
+    var(--border-width)
+      calc(var(--edge-size) + (var(--border-width) * var(--edge-mult))),
+    calc(var(--edge-size) + (var(--border-width) * var(--edge-mult)))
+      var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width))
+      calc(
+        100% - var(--border-width) -
+          calc(var(--edge-size) + (var(--border-width) * var(--edge-mult)))
+      ),
+    calc(
+        100% - var(--border-width) -
+          calc(var(--edge-size) + (var(--border-width) * var(--edge-mult)))
+      )
+      calc(100% - var(--border-width)),
+    var(--border-width) calc(100% - var(--border-width))
+  );
+
+  transition: clip-path 300ms;
+}
+
+.card:where(:hover, :focus) {
+  color: white;
+}
+
+.card:where(:hover, :focus)::after {
+  clip-path: polygon(
+    calc(100% - var(--border-width))
+      calc(
+        100% - var(--border-width) -
+          calc(var(--edge-size) + (var(--border-width) * var(--edge-mult)))
+      ),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width)) var(--border-width),
+    calc(100% - var(--border-width))
+      calc(
+        100% - var(--border-width) -
+          calc(var(--edge-size) + (var(--border-width) * var(--edge-mult)))
+      ),
+    calc(
+        100% - var(--border-width) -
+          calc(var(--edge-size) + (var(--border-width) * var(--edge-mult)))
+      )
+      calc(100% - var(--border-width)),
+    calc(
+        100% - var(--border-width) -
+          calc(var(--edge-size) + (var(--border-width) * var(--edge-mult)))
+      )
+      calc(100% - var(--border-width))
+  );
+}
+
+/* .card:hover,
 .card:focus,
 .card:active {
   color: #0070f3;
   border-color: #0070f3;
-}
+} */
 
 .card h2 {
   margin: 0 0 1rem 0;
@@ -104,7 +229,9 @@
 }
 
 .logo {
-  height: 1em;
+  /* height: 1em;
+  margin-left: 0.5rem; */
+  height: 15rem;
   margin-left: 0.5rem;
 }
 
@@ -113,4 +240,105 @@
     width: 100%;
     flex-direction: column;
   }
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.topnav img {
+  height: 8rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+
+  .topnav img {
+    aspect-ratio: 4/3;
+  }
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  --background: white;
+  --border-color: linear-gradient(to bottom right, #3399ff, #0070f3);
+  --border-width: 0.5em;
+  --edge-size: 1.25em;
+  --edge-mult: 0.25;
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  padding: 0.5em 1em;
+  border: 0;
+  background-image: var(--background);
+  clip-path: polygon(
+    100% 0,
+    100% var(--edge-size),
+    80% 100%,
+    20% 100%,
+    0% var(--edge-size),
+    0 0
+  );
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background: var(--border-color);
+  color: white;
+  transition: background-color 300ms;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background: var(--border-color);
+  color: white;
+}
+
+.contactcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.contactform {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactform input {
+  border-radius: 5px;
+  min-height: 2rem;
+}
+
+.contactform textarea {
+  border-radius: 5px;
+  min-height: 5rem;
+}
+
+.contactform input[type="button"],
+.contactform input[type="submit"],
+.contactform input[type="reset"] {
+  background: linear-gradient(to bottom right, #3399ff, #0070f3);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
 }
