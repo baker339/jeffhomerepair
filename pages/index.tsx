@@ -30,8 +30,6 @@ const Home: NextPage = () => {
               <>
                 <h2>Maintenance &rarr;</h2>
                 <ul>
-                  <li>Power Washing</li>
-                  <li>Hedge Trimming</li>
                   <li>Changing Lightbulbs</li>
                   <li>Changing Alarm Batteries</li>
                 </ul>
