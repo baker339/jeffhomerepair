@@ -12,7 +12,11 @@ interface ServiceList {
 const services: ServiceList[] = [
   {
     Service: "Maintenance",
-    SubServices: ["Changing Lightbulbs", "Changing Alarm Batteries"],
+    SubServices: [
+      "Changing Lightbulbs",
+      "Changing Alarm Batteries",
+      "Dryer Vent Cleaning",
+    ],
   },
   {
     Service: "Painting",

@@ -32,6 +32,7 @@ const Home: NextPage = () => {
                 <ul>
                   <li>Changing Lightbulbs</li>
                   <li>Changing Alarm Batteries</li>
+                  <li>Dryer Vent Cleaning</li>
                 </ul>
               </>
             </a>
